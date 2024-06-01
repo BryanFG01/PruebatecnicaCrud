@@ -9,7 +9,7 @@ const express_handlebars_1 = require("express-handlebars");
 const path_1 = __importDefault(require("path"));
 //rauter
 const index_1 = __importDefault(require("./routes/index"));
-const taskRoutes_1 = __importDefault(require("./routes/taskRoutes"));
+const tasks_1 = __importDefault(require("./routes/tasks"));
 class Application {
     constructor() {
         this.app = (0, express_1.default)();
@@ -35,7 +35,7 @@ class Application {
     }
     routes() {
         this.app.use('/', index_1.default);
-        this.app.use('/task', taskRoutes_1.default);
+        this.app.use('/task', tasks_1.default);
         this.app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
     }
     start() {
