@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
-//import expejs from 'express-ejs';
+const express_handlebars_1 = require("express-handlebars");
 const path_1 = __importDefault(require("path"));
 //rauter
 const index_1 = __importDefault(require("./routes/index"));
@@ -16,15 +16,22 @@ class Application {
         this.settings();
         this.middlewares();
         this.routes();
-        //  this.welcome();
     }
     settings() {
         this.app.set("port", 3000); //firme para conectar el proyecto
         this.app.set("views", path_1.default.join(__dirname, "views")); // Configura la ruta a las vistas EJS
-        this.app.set("view engine", "ejs");
+        this.app.engine(".hbs", (0, express_handlebars_1.create)({
+            layoutsDir: path_1.default.join(this.app.get("views"), "layouts"),
+            partialsDir: path_1.default.join(this.app.get("views"), "partials"),
+            defaultLayout: "main",
+            extname: ".hbs",
+        }).engine);
+        this.app.set("views engine", ".hbs");
     }
     middlewares() {
         this.app.use((0, morgan_1.default)('dev'));
+        this.app.use(express_1.default.json()); //  para que entienda los formatos jeson
+        this.app.use(express_1.default.urlencoded({ extended: false })); // para que el servidor pueda entenderlo
     }
     routes() {
         this.app.use('/', index_1.default);

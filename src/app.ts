@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from 'morgan';
-import expehbs from 'express-handlebars';
+import {create} from 'express-handlebars';
 import path from 'path';
 //rauter
 import indexRautes from './routes/index';
@@ -20,9 +20,16 @@ class Application {
     settings(){
       this.app.set("port", 3000); //firme para conectar el proyecto
       this.app.set("views", path.join(__dirname, "views")); // Configura la ruta a las vistas EJS
-      this.app.engine('.hbs', expehbs({
-        layoutsDir: path.join(this.app.get(views), 'layouts')
-      }));
+      this.app.engine(
+        ".hbs",
+        create({
+          layoutsDir: path.join(this.app.get("views"), "layouts"),
+          partialsDir: path.join(this.app.get("views"), "partials"),
+          defaultLayout: "main",
+          extname: ".hbs",
+        }).engine
+      );
+      this.app.set("views engine", ".hbs");
     }
     middlewares(){
         this.app.use(morgan('dev'));
