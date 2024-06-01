@@ -16,7 +16,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield mongoose_1.default.connect('mongodb://localhost/ts-app-tutorial', {
+            yield mongoose_1.default.connect('mongodb://localhost/ts-app-prueba', {
             //useNewUrlParser: true 
             });
             console.log('>>> dabase connect');

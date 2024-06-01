@@ -4,7 +4,7 @@ import {create} from 'express-handlebars';
 import path from 'path';
 //rauter
 import indexRautes from './routes/index';
-import taskRoutes from "./routes/taskRoutes";
+import taskRoutes from "./routes/tasks";
 
 class Application {
 
