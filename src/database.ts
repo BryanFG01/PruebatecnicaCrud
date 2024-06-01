@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 async function connect() {
 
     try{
-        await mongoose.connect('mongodb://localhost/ts-app-tutorial',{
+        await mongoose.connect('mongodb://localhost/ts-app-prueba',{
            //useNewUrlParser: true 
         });
         console.log('>>> dabase connect')
