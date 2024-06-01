@@ -19,6 +19,7 @@ Tecnologías:
 
 # Funcionalidades 
 
-pantalla de vienvenidad //  
+pantalla de bienvenidad //  
 
-ingreso de atareas que peude ingresar, leer, editar y eliminar  
+ingreso de atareas que puede ingresar, leer, editar y eliminar 
+manejo de datos con mongoose / mongoDB 
