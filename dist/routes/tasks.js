@@ -38,11 +38,18 @@ router.route('/delete/:id')
     yield task_1.default.findByIdAndDelete(id);
     res.send('/tasks/list');
 }));
-router.route("/edit/:id")
+router
+    .route("/edit/:id")
     .get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const task = yield task_1.default.findById(id);
-    res.render('tasks/edit', { task });
+    res.render("tasks/edit", { task });
+}))
+    .post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { title, description } = req.body;
+    yield task_1.default.findByIdAndUpdate({ title, description });
+    res.redirect('/tasks/list');
 }));
 exports.default = router;
 // enrutador task

@@ -6,6 +6,7 @@ import path from 'path';
 import indexRautes from './routes/index';
 import taskRoutes from "./routes/tasks";
 
+
 class Application {
 
     app: express.Application;
