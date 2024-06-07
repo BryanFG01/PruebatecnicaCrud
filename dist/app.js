@@ -10,7 +10,7 @@ const path_1 = __importDefault(require("path"));
 const config_1 = require("./config");
 //rauter
 const index_1 = __importDefault(require("./routes/index"));
-const tasks_1 = __importDefault(require("./routes/tasks"));
+const tasks_Routes_1 = __importDefault(require("./routes/tasks.Routes"));
 class Application {
     constructor() {
         this.app = (0, express_1.default)();
@@ -19,7 +19,7 @@ class Application {
         this.routes();
     }
     settings() {
-        this.app.set("views", path_1.default.join(__dirname, "views")); // Configura la ruta a las vistas EJS
+        this.app.set("views", path_1.default.join(__dirname, "views")); // Configura la ruta a las vistas reistro
         this.app.engine(".hbs", (0, express_handlebars_1.engine)({
             layoutsDir: path_1.default.join(this.app.get("views"), "layouts"),
             partialsDir: path_1.default.join(this.app.get("views"), "partials"),
@@ -35,8 +35,17 @@ class Application {
     }
     routes() {
         this.app.use("/", index_1.default);
-        this.app.use("/task", tasks_1.default);
+        this.app.use("/tasks.Routes", tasks_Routes_1.default);
+        Usa;
+        la;
+        nueva;
+        ruta;
+        de;
+        usuario;
         this.app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
+        this.app.get('/', (req, res) => {
+            res.redirect('/users/register');
+        });
     }
     start() {
         this.app.listen(config_1.PORT, () => {

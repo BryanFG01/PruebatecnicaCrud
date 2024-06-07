@@ -3,7 +3,8 @@ Desarrollar una API para la gestión de tareas con CRUD (Crear, Leer, Actualizar
 sistema de autenticación y autorización, garantizando que los usuarios gestionen únicamente
 sus propias tareas. La API debe ser consumible desde Postman
 
-
+# Typescript Nodejs Mongodb CRUD
+![](img/registro.PNG)
 
 
 

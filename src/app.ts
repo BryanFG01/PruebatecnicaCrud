@@ -9,6 +9,8 @@ import indexRautes from './routes/index';
 import taskRoutes from "./routes/tasks";
 
 
+
+
 class Application {
   app: express.Application;
 
@@ -19,7 +21,7 @@ class Application {
     this.routes();
   }
   settings() {//firme para conectar el proyecto
-    this.app.set("views", path.join(__dirname, "views")); // Configura la ruta a las vistas EJS
+    this.app.set("views", path.join(__dirname, "views"));// Configura la ruta a las vistas reistro
     this.app.engine(
       ".hbs",
       engine({
@@ -32,15 +34,15 @@ class Application {
     this.app.set("views engine", ".hbs"); // Establece Handlebars como motor de vistas
   }
   middlewares() {
-    this.app.use(morgan("dev"));
+    this.app.use(morgan('dev'));
     this.app.use(express.json()); //  para que entienda los formatos jeson
-    this.app.use(express.urlencoded({ extended: false })); // para que el servidor pueda entenderlo
+    this.app.use(express.urlencoded({ extended: false })); // para que el servidor pueda entender la informacion
   }
   routes() {
     this.app.use("/", indexRautes);
-    this.app.use("/task", taskRoutes);
-
+    this.app.use("/tasks", taskRoutes);
     this.app.use(express.static(path.join(__dirname, "public")));
+    
   }
 
   start(): void {
