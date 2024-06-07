@@ -3,14 +3,14 @@
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <h3>{{ title }}</h3>
-          <p>{{ description }}</p>
+          <h3>{{ tittle }}</h3>
+          <p>{{ descriptions}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between betalign-items-center">
-          <a href="/tasks/delete/{{id}}" class="btn btn-danger">
+          <a href="/tasks/delete/{{_id}}" id="delete" class="btn btn-danger">
             Delete
           </a>
-          <a href="/tasks/edit{{id}}" class="btn btn-secondary">
+          <a href="/tasks/edit/{{_id}}" id="edit"  class="btn btn-secondary">
             Edit
           </a>
         </div>

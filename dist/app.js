@@ -10,7 +10,7 @@ const path_1 = __importDefault(require("path"));
 const config_1 = require("./config");
 //rauter
 const index_1 = __importDefault(require("./routes/index"));
-const tasks_Routes_1 = __importDefault(require("./routes/tasks.Routes"));
+const tasks_1 = __importDefault(require("./routes/tasks"));
 class Application {
     constructor() {
         this.app = (0, express_1.default)();
@@ -29,23 +29,14 @@ class Application {
         this.app.set("views engine", ".hbs"); // Establece Handlebars como motor de vistas
     }
     middlewares() {
-        this.app.use((0, morgan_1.default)("dev"));
+        this.app.use((0, morgan_1.default)('dev'));
         this.app.use(express_1.default.json()); //  para que entienda los formatos jeson
-        this.app.use(express_1.default.urlencoded({ extended: false })); // para que el servidor pueda entenderlo
+        this.app.use(express_1.default.urlencoded({ extended: false })); // para que el servidor pueda entender la informacion
     }
     routes() {
         this.app.use("/", index_1.default);
-        this.app.use("/tasks.Routes", tasks_Routes_1.default);
-        Usa;
-        la;
-        nueva;
-        ruta;
-        de;
-        usuario;
+        this.app.use("/tasks", tasks_1.default);
         this.app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
-        this.app.get('/', (req, res) => {
-            res.redirect('/users/register');
-        });
     }
     start() {
         this.app.listen(config_1.PORT, () => {

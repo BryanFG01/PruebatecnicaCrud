@@ -4,7 +4,7 @@ const express_1 = require("express");
 const router = (0, express_1.Router)();
 //anejador de peticiones
 router.get("/", (req, res) => {
-    res.render("register.hbs");
+    res.render("index.hbs");
 });
 //Ruta para la vista de inicio de sesión
 exports.default = router;

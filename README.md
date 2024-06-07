@@ -5,6 +5,7 @@ sus propias tareas. La API debe ser consumible desde Postman
 
 # Typescript Nodejs Mongodb CRUD
 ![](img/registro.PNG)
+![](img/tareas.PNG)
 
 
 

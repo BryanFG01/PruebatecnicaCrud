@@ -17,6 +17,6 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
-  },
+  }
 });
   export default model ("users", UserSchema );

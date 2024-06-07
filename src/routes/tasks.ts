@@ -9,21 +9,22 @@ import Users from '../models/users'
 router
   .route('/index')
   .get((req: Request, res: Response) => {
-    res.render("users/index.hbs");
+    res.render("users/index.hbs"); // registro de usuario
   })
   .post(async (req: Request, res: Response) => {
     const { username, password, email } = req.body;
     const newUsers = new Users({ username, password, email });
     await newUsers.save();
-    res.redirect("/tasks/create");
+    res.redirect('/tasks/create'); //direciona a ruta de create
   });
+
 router.route('/create')
   .get((req: Request, res: Response) => {
     res.render("tasks/create.hbs");
   })
   .post(async(req: Request, res: Response) => {
-    const { title, description } = req.body;
-    const newTask = new Task({ title, description });
+    const { tittle, descriptions } = req.body;
+    const newTask = new Task({ tittle, descriptions });
     await newTask.save();
     res.redirect("/tasks/list");
   });
@@ -31,14 +32,14 @@ router.route('/create')
 router.route('/list')
 .get(async(req: Request, res: Response) => {
     const tasks = await Task.find();
-    res.render("tasks/list.hbs", {tasks});
+    res.render("tasks/list.hbs", {tasks: tasks});
     });
 
 router.route('/delete/:id')
     .get(async(req: Request, res: Response) =>{
-      const {id} = req.params;
-      await Task.findByIdAndDelete(id);
-        res.redirect('/tasks/list');
+      const { id } = req.params;
+      await Task.findByIdAndDelete(id); // Elimina la tarea con el ID proporcionado
+      res.redirect("/tasks/list.hbs");
     });
 
 router
@@ -46,13 +47,13 @@ router
   .get(async (req: Request, res: Response) => {
     const { id } = req.params;
     const task = await Task.findById(id);
-    res.render("tasks/edit.hbs", { task });
+    res.render("tasks/edit.hbs", { task});
   })
   .post(async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { title, description } = req.body;
-    await Task.findByIdAndUpdate(id, {title, description });
-    res.redirect('/tasks/list.hbs');
+    const { tittle, descriptions } = req.body;
+    await Task.findByIdAndUpdate(id, {tittle, descriptions });
+    res.redirect('/tasks/list');
   });
 
 

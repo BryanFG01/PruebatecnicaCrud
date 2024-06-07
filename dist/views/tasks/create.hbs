@@ -1,19 +1,31 @@
 <div class="row">
   <div class="col-md-4 offset-md-4">
-    <div class="card">
-      <div class="card-body"></div>
-        <form action="/tasks/create"  method="POST">
-          <div class="for-group">
-            <input type="text" name="title" placeholder="write your tittle"
-            class="form-control">
+    <div class="card bg-light">
+      <div class="card-body">
+        <form action="/tasks/create" method="POST">
+          <div class="mb-3">
+            <label for="tittle">lista de tareas</label>
+            <input
+              type="text"
+              name="tittle"
+              placeholder="Write your title"
+              class="form-control"
+            />
           </div>
-          <div class="form-group">
-            <input class="form-control" type="text" name="descripcion" placeholder="write a description">
+          <div class="mb-3">
+            <label for="descriptions">Description:</label>
+            <textarea
+              name="descriptions"
+              class="form-control"
+              placeholder="Write a description"
+              rows="3"
+            ></textarea>
           </div>
-            <button type="submit" class="btn btn-succes btn-block">
+          <button type="submit" class="btn btn-dark btn-block">
             Save
-            </button>
+          </button>
         </form>
       </div>
     </div>
+  </div>
 </div>

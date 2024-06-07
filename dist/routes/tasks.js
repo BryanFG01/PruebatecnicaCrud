@@ -14,41 +14,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-//mode
+//model
 const task_1 = __importDefault(require("../models/task"));
-router.route('/create')
+const users_1 = __importDefault(require("../models/users"));
+router
+    .route('/index')
     .get((req, res) => {
-    res.render("tasks/create");
+    res.render("users/index.hbs"); // registro de usuario
 })
     .post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, description } = req.body;
-    const newTask = new task_1.default({ title, description });
-    yield newTask.save();
-    res.redirect("tasks/list");
+    const { username, password, email } = req.body;
+    const newUsers = new users_1.default({ username, password, email });
+    yield newUsers.save();
+    res.redirect('/tasks/create'); //direciona a ruta de create
 }));
-router.route("/list")
+router.route('/create')
+    .get((req, res) => {
+    res.render("tasks/create.hbs");
+})
+    .post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { tittle, descriptions } = req.body;
+    const newTask = new task_1.default({ tittle, descriptions });
+    yield newTask.save();
+    res.redirect("/tasks/list");
+}));
+router.route('/list')
     .get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tasks = yield task_1.default.find();
-    console.log(tasks);
-    res.render("tasks/list", { tasks });
+    res.render("tasks/list.hbs", { tasks: tasks });
 }));
 router.route('/delete/:id')
     .get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    yield task_1.default.findByIdAndDelete(id);
-    res.send('/tasks/list');
+    yield task_1.default.findByIdAndDelete(id); // Elimina la tarea con el ID proporcionado
+    res.redirect("/tasks/list.hbs");
 }));
 router
     .route("/edit/:id")
     .get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const task = yield task_1.default.findById(id);
-    res.render("tasks/edit", { task });
+    res.render("tasks/edit.hbs", { task });
 }))
     .post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { title, description } = req.body;
-    yield task_1.default.findByIdAndUpdate({ title, description });
+    const { tittle, descriptions } = req.body;
+    yield task_1.default.findByIdAndUpdate(id, { tittle, descriptions });
     res.redirect('/tasks/list');
 }));
 exports.default = router;
